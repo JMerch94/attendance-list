@@ -1,0 +1,16 @@
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Company</th>
+    <th>Registration Date</th>
+  </tr>
+    {% for attendee in attendees %}
+    <tr>
+        <td><a href="data/{{attendee.id}}">{{attendee.id}}</a></td>
+        <td>{{attendee.name}}</td>
+        <td>{{attendee.company}}</td>
+        <td>{{attendee.registrationDate}}</td>
+      </tr>
+    {% endfor %}
+</table>
