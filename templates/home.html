@@ -1,6 +1,9 @@
 {% extends "layout.html" %}
 {% block content %}
-<p><b>Jared Merchant</b></p>
-<p><i>Created with Flask and Python 3.7</i></p>
-<p>This is<sub> subscript</sub> and <sup>superscript</sup></p>
+<div class="d-md-flex justify-content-md-center">
+    <p><b>Conference Attendees:</b> {{totalAttendees}}</p>
+</div>
+<div class="d-md-flex justify-content-md-center">
+    <a href="/data" class="btn btn-outline-primary" role="button">View Table</a>
+</div>
 {% endblock %}

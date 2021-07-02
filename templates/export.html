@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block content %}
+<form action='' method="post">
+
+<div class="d-md-flex justify-content-md-center">
+  <label class="form-label">Are you sure you want to export {{totalAttendees}} registered attendees?</label>
+</div>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+        <a href="/data" class="btn btn-outline-secondary" role="button">Cancel</a>
+        <button type="submit" class="btn btn-primary">Confirm</button>
+        {{fileName}}
+        <a href="./favicon.ico" download>dl</a>
+
+    </div>
+</form>
+
+{% endblock %}

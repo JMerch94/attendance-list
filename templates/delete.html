@@ -1,5 +1,13 @@
+{% extends "layout.html" %}
+{% block content %}
 <form action='' method="post">
-    Click YES to confirm
-    <input type = "submit" value="YES">
-    <a href='/data'>Cancel</a>
+
+<div class="d-md-flex justify-content-md-center">
+  <label class="form-label">Are you sure you want to delete the entry of attendee ID {{id}}?</label>
+</div>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+        <a href="/data/{{id}}" class="btn btn-outline-secondary" role="button">Cancel</a>
+        <button type="submit" class="btn btn-danger">Delete</button>
+    </div>
 </form>
+{% endblock %}

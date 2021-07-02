@@ -5,7 +5,15 @@
 <h3>Registration Date</h3>
 <p>{{attendee.registrationDate}}</p><hr>
 <h3>Name</h3>
-<p>{{attendee.name}}</p><hr>
+<p>{{attendee.firstName}} {{attendee.lastName}}</p><hr>
+<h3>Email</h3>
+<p>{{attendee.email}}</p><hr>
 <h3>Company</h3>
 <p>{{attendee.company}}</p><hr>
+     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+
+<a class="btn btn-outline-danger" href="{{attendee.id}}/delete" role="button">Delete</a>
+         <a class="btn btn-primary" href="{{attendee.id}}/update" role="button">Update</a>
+
+     </div>
 {% endblock %}

@@ -1,12 +1,47 @@
 <!doctype html>
-<html>
-  <head>
-    <title>Flask</title>
-    <link href="{{url_for('static', filename = 'css/bootstrap.min.css')}}" rel="stylesheet">
-  </head>
-  <body>
+<html lang="en" class="h-100">
+
+<head>
+  <title>Conference Attendees</title>
+  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+  <link href="{{url_for('static', filename = 'css/bootstrap.min.css')}}" rel="stylesheet">
+  <!-- Custom styling -->
+  <link href="{{url_for('static', filename = 'custom.css')}}" rel="stylesheet">
+</head>
+
+<body class="d-flex flex-column h-100">
+  <header class="d-flex justify-content-center py-3">
+    <ul class="nav nav-pills">
+      <li class="nav-item"><a href="/" class="nav-link {{'active' if request.path == '/' }}">Home</a></li>
+      <li class="nav-item"><a href="/data" class="nav-link {{'active' if request.path == '/data' }}">Data</a></li>
+      <li class="nav-item"><a href="/data/create" class="nav-link {{'active' if request.path == '/data/create' }}">Create</a></li>
+    </ul>
+  </header>
+
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+  <div class="container px-4">
+      {% for category, message in messages %}
+        <div class="alert alert-{{ category }}" role="alert">
+          {{message}}
+        </div>
+      {% endfor %}
+      </div>
+
+    {% endif %}
+  {% endwith %}
+
+  <div class="container px-4 py-5">
     {% block content %}{% endblock %}
-    <p>Web app made with Flask</p>
+  </div>
+
+  <footer class="footer mt-auto py-3 bg-light">
+    <div class="container">
+
+    </div>
+  </footer>
   <script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
-  </body>
+</body>
+
 </html>
