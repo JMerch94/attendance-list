@@ -1,0 +1,27 @@
+a.active {
+    color: #ee4e34 !important;
+}
+
+.table {
+    --bs-table-striped-bg: #fcedda77;
+}
+
+.table-btn-group :first-child {
+    margin-right: 5px;
+}
+
+.card-header {
+    background-color: #fcedda77;
+}
+
+.card-header p {
+    margin: 0;
+}
+
+.card-header p:first-child {
+    float: left;
+}
+
+.card-header p:last-child {
+    float: right;
+}

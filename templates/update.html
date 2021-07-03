@@ -1,25 +1,27 @@
 {% extends "layout.html" %}
 {% block content %}
-<form action='' method = "POST">
+<form action='' method="POST">
   <div class="row g-3 mb-3">
     <div class="col">
-      <input type="text" class="form-control" placeholder="First name" aria-label="First name" name="firstName" value="{{attendee.firstName}}" required>
+      <input type="text" class="form-control" placeholder="First name" aria-label="First name" name="firstName"
+        value="{{attendee.firstName}}" required>
     </div>
     <div class="col">
-      <input type="text" class="form-control" placeholder="Last name" aria-label="Last name" name="lastName" value="{{attendee.lastName}}" required>
+      <input type="text" class="form-control" placeholder="Last name" aria-label="Last name" name="lastName"
+        value="{{attendee.lastName}}" required>
     </div>
   </div>
   <div class="mb-3">
-          <input type="text" class="form-control" placeholder="Company" aria-label="Company" name="company" value="{{attendee.company}}" required>
+    <input type="text" class="form-control" placeholder="Company" aria-label="Company" name="company"
+      value="{{attendee.company}}" required>
   </div>
   <div class="mb-3">
-          <input type="email" class="form-control" placeholder="Email" aria-label="Email" name="email" value="{{attendee.email}}" required>
+    <input type="email" class="form-control" placeholder="Email" aria-label="Email" name="email"
+      value="{{attendee.email}}" required>
   </div>
-     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-      <a class="btn btn-outline-secondary" href="/data/{{attendee.id}}" role="button">Cancel</a>
-        <button type="submit" class="btn btn-primary">Save</button>
-    </div>
-
-
+  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <a class="btn btn-outline-secondary" href="/data/{{attendee.id}}" role="button">Cancel</a>
+    <button type="submit" class="btn btn-primary">Save</button>
+  </div>
 </form>
 {% endblock %}

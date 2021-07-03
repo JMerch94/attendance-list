@@ -1,6 +1,6 @@
 import io
 
-from flask import Flask, render_template, request, redirect, abort, flash, url_for, send_file, make_response
+from flask import Flask, render_template, request, redirect, abort, flash, make_response, url_for
 from models import db, AttendeeModel
 from datetime import datetime
 import csv
@@ -11,6 +11,8 @@ app.config.from_object('config.DevConfig')
 app.secret_key = 'super secret'
 db.init_app(app)
 
+global config
+config = app.config
 
 @app.before_first_request
 def create_table():
@@ -28,7 +30,6 @@ def initialLoad():
 def create():
     if request.method == 'GET':
         return render_template('createpage.html')
-
     if request.method == 'POST':
         registrationDate = datetime.now()
         firstName = request.form['firstName']
@@ -94,36 +95,22 @@ def delete(id):
 
 @app.route('/data/export', methods=['GET', 'POST'])
 def export():
-    attendees = AttendeeModel.query.all()
-    totalAttendees = len(attendees)
     time = datetime.now().strftime("%Y-%m-%d-")
     fileName = time + 'attendees'
-    if request.method == 'POST':
-        con = db.session
+    con = db.session
 
-        try:
-            with open(fileName + '.csv', 'w+') as f:
-                # downloads exported file to server
-                # outcsv = csv.writer(f)
-                # cursor = con.execute("select * from 'table'")
-                # outcsv.writerows(cursor.fetchall())
-                # f.close()
-                # flash('Export successful.', 'success')
-                # p = "fileName.csv"
-                # return redirect(url_for('RetrieveDataList'))
+    try:
+        # downloads exported file locally
+        cursor = con.execute("select * from 'table'")
+        si = io.StringIO()
+        cw = csv.writer(si)
+        cw.writerows(cursor.fetchall())
+        output = make_response(si.getvalue())
+        output.headers["Content-Disposition"] = "attachment; filename=" + \
+            fileName + ".csv"
+        output.headers["Content-type"] = "text/csv"
+    except Exception as e:
+        flash("Couldn't open or write to file (%s)." % e, 'warning')
+        return redirect('/data')
 
-                # downloads exported file locally
-                cursor = con.execute("select * from 'table'")
-                si = io.StringIO()
-                cw = csv.writer(si)
-                cw.writerows(cursor.fetchall())
-                output = make_response(si.getvalue())
-                output.headers["Content-Disposition"] = "attachment; filename=export.csv"
-                output.headers["Content-type"] = "text/csv"
-                flash("File write successful.", 'success')
-                return output
-
-        except Exception as e:
-            flash("Couldn't open or write to file (%s)." % e, 'error')
-
-    return render_template('export.html', totalAttendees=totalAttendees, fileName=fileName)
+    return output

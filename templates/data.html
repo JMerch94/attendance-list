@@ -1,19 +1,31 @@
 {% extends "layout.html" %}
 {% block content %}
-<h3>ID</h3>
-<p>{{attendee.id}}</p><hr>
-<h3>Registration Date</h3>
-<p>{{attendee.registrationDate}}</p><hr>
-<h3>Name</h3>
-<p>{{attendee.firstName}} {{attendee.lastName}}</p><hr>
-<h3>Email</h3>
-<p>{{attendee.email}}</p><hr>
-<h3>Company</h3>
-<p>{{attendee.company}}</p><hr>
-     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-
-<a class="btn btn-outline-danger" href="{{attendee.id}}/delete" role="button">Delete</a>
-         <a class="btn btn-primary" href="{{attendee.id}}/update" role="button">Update</a>
-
+<div class="card mb-4">
+     <div class="card-header">
+          <p>{{attendee.firstName}} {{attendee.lastName}}</p>
+          <p>{{attendee.id}}</p>
      </div>
+     <div class="card-body">
+          <dl class="row">
+               <dt class="col-sm-3">ID</dt>
+               <dd class="col-sm-9">{{attendee.id}}</dd>
+
+               <dt class="col-sm-3">Name</dt>
+               <dd class="col-sm-9">{{attendee.firstName}} {{attendee.lastName}}</dd>
+
+               <dt class="col-sm-3">Email</dt>
+               <dd class="col-sm-9">{{attendee.email}}</dd>
+
+               <dt class="col-sm-3">Company</dt>
+               <dd class="col-sm-9">{{attendee.company}}</dd>
+
+               <dt class="col-sm-3">Registration Date</dt>
+               <dd class="col-sm-9">{{attendee.registrationDate}}</dd>
+          </dl>
+     </div>
+</div>
+<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+     <a class="btn btn-outline-danger" href="{{attendee.id}}/delete" role="button">Delete</a>
+     <a class="btn btn-primary" href="{{attendee.id}}/update" role="button">Update</a>
+</div>
 {% endblock %}

@@ -1,9 +1,12 @@
 {% extends "layout.html" %}
 {% block content %}
-<div class="d-md-flex justify-content-md-center">
-    <p><b>Conference Attendees:</b> {{totalAttendees}}</p>
-</div>
-<div class="d-md-flex justify-content-md-center">
-    <a href="/data" class="btn btn-outline-primary" role="button">View Table</a>
+<div class="d-md-flex flex-column align-items-center">
+  <p class="lead">
+    To track attendance at an event, simply open the "Create" page and input attendee information.
+  <p><b>Total Attendees:</b> {{totalAttendees}}</p>
+  </p>
+  <a href="/data">
+    <img src="{{ url_for('static', filename='logo.png') }}" class="img-fluid" alt="">
+  </a>
 </div>
 {% endblock %}
